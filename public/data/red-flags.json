@@ -1,0 +1,67 @@
+{
+  "title": "Signaux d'alerte professionnels",
+  "introduction": "Certains signaux peuvent interpeller sans être toujours visibles au premier regard.",
+  "description": "Ces éléments de vigilance sont issus d'observations générales du monde professionnel et peuvent aider à développer un regard critique.",
+  "redFlags": [
+    {
+      "id": 1,
+      "text": "Promesses verbales sans engagement écrit",
+      "category": "communication"
+    },
+    {
+      "id": 2,
+      "text": "Retards de paiement présentés comme temporaires ou exceptionnels",
+      "category": "financier"
+    },
+    {
+      "id": 3,
+      "text": "Dilution des responsabilités décisionnelles",
+      "category": "organisation"
+    },
+    {
+      "id": 4,
+      "text": "Pression morale normalisant des situations anormales",
+      "category": "relationnel"
+    },
+    {
+      "id": 5,
+      "text": "Absence de réponse claire face à un problème concret",
+      "category": "communication"
+    },
+    {
+      "id": 6,
+      "text": "Dépendance économique implicite",
+      "category": "financier"
+    },
+    {
+      "id": 7,
+      "text": "Glissement progressif des règles initiales",
+      "category": "organisation"
+    },
+    {
+      "id": 8,
+      "text": "Isolation progressive des collaborateurs critiques",
+      "category": "relationnel"
+    },
+    {
+      "id": 9,
+      "text": "Justifications systématiques sans remise en question",
+      "category": "communication"
+    },
+    {
+      "id": 10,
+      "text": "Urgence artificielle pour éviter la réflexion",
+      "category": "organisation"
+    }
+  ],
+  "hashtags": [
+    "#RedFlags",
+    "#VigilanceProfessionnelle",
+    "#Formation",
+    "#Management",
+    "#RelationsDeTravail",
+    "#DéveloppementProfessionnel",
+    "#Prévention"
+  ],
+  "disclaimer": "Ces éléments sont fournis à titre informatif et ne constituent pas des conseils juridiques ou professionnels spécifiques."
+}

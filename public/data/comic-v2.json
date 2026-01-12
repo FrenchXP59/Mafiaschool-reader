@@ -1,0 +1,81 @@
+{
+  "title": "Mafia School",
+  "author": "Auteur",
+  "description": "Une œuvre d'enquête et de critique sociale qui explore les mécanismes du pouvoir et de la corruption dans nos institutions.",
+  "version": "2.0",
+  "episodes": [
+    {
+      "id": 1,
+      "title": "L'Enquête Commence",
+      "description": "Les premiers indices d'un système corrompu",
+      "available": true
+    },
+    {
+      "id": 2,
+      "title": "Révélations",
+      "description": "Les secrets cachés remontent à la surface",
+      "available": false
+    }
+  ],
+  "chapters": [
+    {
+      "id": 1,
+      "title": "Prologue",
+      "episodeId": 1,
+      "startPage": 1,
+      "endPage": 1,
+      "description": "L'histoire commence..."
+    },
+    {
+      "id": 2,
+      "title": "Première Découverte",
+      "episodeId": 1,
+      "startPage": 2,
+      "endPage": 2,
+      "description": "Les indices s'accumulent"
+    }
+  ],
+  "pages": [
+    {
+      "id": 1,
+      "chapterId": 1,
+      "image": "/data/images/1.webp",
+      "alt": "Planche 1 - Mafia School",
+      "narrativeMessage": {
+        "enabled": true,
+        "position": "after",
+        "title": "Le Début de l'Enquête",
+        "content": "Dans cette première planche, nous découvrons l'univers sombre et complexe de Mafia School. Chaque détail compte dans cette enquête qui ne fait que commencer.",
+        "type": "context"
+      }
+    },
+    {
+      "id": 2,
+      "chapterId": 2,
+      "image": "/data/images/2.webp",
+      "alt": "Planche 2 - Mafia School",
+      "narrativeMessage": {
+        "enabled": true,
+        "position": "after",
+        "title": "Les Indices s'Accumulent",
+        "content": "Les premiers éléments de l'enquête se mettent en place. Observez attentivement les détails qui pourraient révéler la vérité cachée.",
+        "type": "investigation"
+      }
+    }
+  ],
+  "settings": {
+    "guidedReading": {
+      "enabled": true,
+      "defaultActive": false
+    },
+    "cinemaMode": {
+      "enabled": true,
+      "defaultActive": false
+    },
+    "statistics": {
+      "enabled": true,
+      "trackCompletion": true,
+      "trackMostViewed": true
+    }
+  }
+}
