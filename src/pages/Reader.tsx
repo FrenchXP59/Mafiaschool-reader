@@ -25,11 +25,8 @@ import {
   Share2,
   Download,
   BookOpen,
-  Settings,
   Eye,
   EyeOff,
-  Zap,
-  ZapOff
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
@@ -47,9 +44,7 @@ const Reader = () => {
     goToChapter,
     resetProgress,
     markReadingComplete,
-    guidedReadingEnabled,
     cinemaModeEnabled,
-    toggleGuidedReading,
     toggleCinemaMode,
     markNarrativeMessageAsSeen,
     shouldShowNarrativeMessage,
@@ -151,11 +146,6 @@ const Reader = () => {
           e.preventDefault();
           setShowChapterSummary(true);
           break;
-        case 'g':
-        case 'G':
-          e.preventDefault();
-          toggleGuidedReading();
-          break;
         case 'c':
         case 'C':
           e.preventDefault();
@@ -166,7 +156,7 @@ const Reader = () => {
 
     document.addEventListener('keydown', handleKeyDown);
     return () => document.removeEventListener('keydown', handleKeyDown);
-  }, [previousPage, nextPage, goToPage, totalPages, navigate, toggleGuidedReading, toggleCinemaMode]);
+  }, [previousPage, nextPage, goToPage, totalPages, navigate, toggleCinemaMode]);
 
   // Gestion des messages narratifs
   useEffect(() => {
@@ -203,7 +193,7 @@ const Reader = () => {
       try {
         await navigator.share({
           title: comicData?.title || 'Mafia School V2',
-          text: `Découvrez "${comicData?.title || 'Mafia School'}" - Version 2 avec lecture guidée et mode cinéma`,
+          text: `Découvrez "${comicData?.title || 'Mafia School'}" - Version 2 avec mode cinéma`,
           url: window.location.origin,
         });
       } catch (err) {
@@ -254,16 +244,17 @@ const Reader = () => {
 
   const currentPageData = getCurrentPageData();
   const currentChapterData = getCurrentChapterData();
+  const hasNextEpisode = comicData.episodes.some(ep => ep.id > 1 && ep.available);
 
   return (
-    <>
-      {/* Écran Red Flags - affiché en priorité */}
-      {showRedFlags && redFlagsData && (
+    <TooltipProvider>
+      {showRedFlags && (
         <RedFlagsScreen
-          data={redFlagsData}
+          flags={redFlagsData}
+          hasAccessedBefore={hasAccessedBefore}
           onClose={() => {
             setShowRedFlags(false);
-            setShowCompletion(true);
+            markRedFlagsAccessed();
           }}
           onMarkAccessed={markRedFlagsAccessed}
           isOpen={showRedFlags}
@@ -284,167 +275,186 @@ const Reader = () => {
                 ? "translate-y-0 opacity-100" 
                 : "-translate-y-full opacity-0"
               : "translate-y-0 opacity-100",
-            cinemaModeEnabled ? "bg-black/80 backdrop-blur-sm" : "bg-background/95 backdrop-blur-sm border-b"
+            cinemaModeEnabled ? "navigation-overlay" : "bg-background/80 backdrop-blur-sm border-b border-border/50"
           )}>
-            <div className="max-w-7xl mx-auto px-4 py-3">
-              <div className="flex items-center justify-between">
-                {/* Navigation gauche */}
-                <div className="flex items-center gap-2">
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    onClick={() => navigate('/')}
-                    className={cinemaModeEnabled ? "text-white hover:bg-white/20" : ""}
-                  >
-                    <Home className="h-4 w-4" />
-                  </Button>
-                  {currentChapterData && (
+            <div className="flex items-center justify-between p-4">
+              {/* Groupe gauche */}
+              <div className="flex items-center gap-2">
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      onClick={() => navigate('/')}
+                      className={cn(
+                        cinemaModeEnabled ? "text-white hover:bg-white/20" : "hover:bg-accent"
+                      )}
+                    >
+                      <Home className="h-4 w-4 mr-2" />
+                      Accueil
+                    </Button>
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    <p>Retour à l'accueil (touche Échap)</p>
+                  </TooltipContent>
+                </Tooltip>
+
+                <Tooltip>
+                  <TooltipTrigger asChild>
                     <Button
                       variant="ghost"
                       size="sm"
                       onClick={() => setShowChapterSummary(true)}
-                      className={cinemaModeEnabled ? "text-white hover:bg-white/20" : ""}
+                      className={cn(
+                        cinemaModeEnabled ? "text-white hover:bg-white/20" : "hover:bg-accent"
+                      )}
                     >
                       <BookOpen className="h-4 w-4 mr-2" />
-                      Chapitres
+                      Sommaire
                     </Button>
-                  )}
-                </div>
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    <p>Ouvrir le sommaire (touche S)</p>
+                  </TooltipContent>
+                </Tooltip>
+              </div>
 
-                {/* Info centrale */}
-                <div className="flex items-center gap-3">
-                  {currentChapterData && 
-                    <Badge 
-                      variant={cinemaModeEnabled ? "secondary" : "outline"} 
-                      className="text-xs"
+              {/* Groupe centre */}
+              <div className="flex items-center gap-3">
+                {currentChapterData && 
+                  <Badge variant={cinemaModeEnabled ? "secondary" : "outline"} className="text-xs">
+                    {currentChapterData.title}
+                  </Badge>
+                }
+                <span className={cn(
+                  "text-sm font-medium",
+                  cinemaModeEnabled ? "text-white" : "text-foreground"
+                )}>
+                  Planche {currentPage} / {totalPages}
+                </span>
+              </div>
+
+              {/* Groupe droite */}
+              <div className="flex items-center gap-2">
+                {/* Bouton Mode cinéma */}
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      onClick={toggleCinemaMode}
+                      className={cn(
+                        cinemaModeEnabled ? "text-white hover:bg-white/20" : "hover:bg-accent",
+                        cinemaModeEnabled && "bg-white/20"
+                      )}
                     >
-                      {currentChapterData.title}
-                    </Badge>
-                  }
-                  <span className={cn(
-                    "text-sm font-medium",
-                    cinemaModeEnabled ? "text-white" : "text-foreground"
-                  )}>
-                    Planche {currentPage} / {totalPages}
-                  </span>
-                </div>
+                      {cinemaModeEnabled ? <Eye className="h-4 w-4" /> : <EyeOff className="h-4 w-4" />}
+                    </Button>
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    <p>{cinemaModeEnabled ? 'Désactiver' : 'Activer'} le mode cinéma (touche C)</p>
+                  </TooltipContent>
+                </Tooltip>
 
-                {/* Boutons de droite avec Tooltips */}
-                <div className="flex items-center gap-2">
-                  <TooltipProvider>
-                    {/* Bouton Lecture guidée */}
-                    <Tooltip>
-                      <TooltipTrigger asChild>
-                        <Button
-                          variant="ghost"
-                          size="sm"
-                          onClick={toggleGuidedReading}
-                          className={cn(
-                            cinemaModeEnabled ? "text-white hover:bg-white/20" : "hover:bg-accent",
-                            cinemaModeEnabled && guidedReadingEnabled && "bg-white/20"
-                          )}
-                        >
-                          {guidedReadingEnabled ? <Zap className="h-4 w-4" /> : <ZapOff className="h-4 w-4" />}
-                        </Button>
-                      </TooltipTrigger>
-                      <TooltipContent>
-                        <p>{guidedReadingEnabled ? 'Désactiver' : 'Activer'} la lecture guidée (touche G)</p>
-                      </TooltipContent>
-                    </Tooltip>
+                {/* Bouton Partager */}
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      onClick={handleShare}
+                      className={cn(
+                        cinemaModeEnabled ? "text-white hover:bg-white/20" : "hover:bg-accent"
+                      )}
+                    >
+                      <Share2 className="h-4 w-4" />
+                    </Button>
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    <p>Partager</p>
+                  </TooltipContent>
+                </Tooltip>
 
-                    {/* Bouton Mode cinéma */}
-                    <Tooltip>
-                      <TooltipTrigger asChild>
-                        <Button
-                          variant="ghost"
-                          size="sm"
-                          onClick={toggleCinemaMode}
-                          className={cn(
-                            cinemaModeEnabled ? "text-white hover:bg-white/20" : "hover:bg-accent",
-                            cinemaModeEnabled && "bg-white/20"
-                          )}
-                        >
-                          {cinemaModeEnabled ? <Eye className="h-4 w-4" /> : <EyeOff className="h-4 w-4" />}
-                        </Button>
-                      </TooltipTrigger>
-                      <TooltipContent>
-                        <p>{cinemaModeEnabled ? 'Désactiver' : 'Activer'} le mode cinéma (touche C)</p>
-                      </TooltipContent>
-                    </Tooltip>
+                {/* Bouton Thème */}
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      onClick={toggleTheme}
+                      className={cn(
+                        cinemaModeEnabled ? "text-white hover:bg-white/20" : "hover:bg-accent"
+                      )}
+                    >
+                      {theme === 'dark' ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
+                    </Button>
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    <p>Changer le thème</p>
+                  </TooltipContent>
+                </Tooltip>
 
-                    {/* Bouton Partager */}
-                    <Tooltip>
-                      <TooltipTrigger asChild>
-                        <Button
-                          variant="ghost"
-                          size="sm"
-                          onClick={handleShare}
-                          className={cn(
-                            cinemaModeEnabled ? "text-white hover:bg-white/20" : "hover:bg-accent"
-                          )}
-                        >
-                          <Share2 className="h-4 w-4" />
-                        </Button>
-                      </TooltipTrigger>
-                      <TooltipContent>
-                        <p>Partager cette BD</p>
-                      </TooltipContent>
-                    </Tooltip>
-
-                    {/* Bouton Thème */}
-                    <Tooltip>
-                      <TooltipTrigger asChild>
-                        <Button
-                          variant="ghost"
-                          size="sm"
-                          onClick={toggleTheme}
-                          className={cn(
-                            cinemaModeEnabled ? "text-white hover:bg-white/20" : "hover:bg-accent"
-                          )}
-                        >
-                          {theme === 'dark' ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
-                        </Button>
-                      </TooltipTrigger>
-                      <TooltipContent>
-                        <p>Basculer en mode {theme === 'dark' ? 'clair' : 'sombre'}</p>
-                      </TooltipContent>
-                    </Tooltip>
-                  </TooltipProvider>
-                </div>
+                {/* Bouton Reset */}
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      onClick={resetProgress}
+                      className={cn(
+                        cinemaModeEnabled ? "text-white hover:bg-white/20" : "hover:bg-accent"
+                      )}
+                    >
+                      <RotateCcw className="h-4 w-4" />
+                    </Button>
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    <p>Réinitialiser la progression</p>
+                  </TooltipContent>
+                </Tooltip>
               </div>
             </div>
           </div>
 
-          {/* Zone d'affichage de l'image */}
-          <div className="fixed inset-0 overflow-y-auto pt-16 pb-20">
-            <div className="max-w-5xl mx-auto p-4 min-h-full flex items-center">
-              <div className="relative w-full">
-                {!imageLoaded && !imageError && (
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="animate-pulse text-muted-foreground">
-                      Chargement...
-                    </div>
+          {/* Contenu principal - Image de la planche */}
+          <div className="flex items-center justify-center min-h-screen pt-20 pb-24 px-4">
+            <div className="relative max-w-4xl w-full">
+              {!imageLoaded && !imageError && (
+                <div className="absolute inset-0 flex items-center justify-center bg-muted/20 rounded-lg">
+                  <div className="animate-pulse text-muted-foreground">
+                    Chargement de la planche {currentPage}...
                   </div>
-                )}
-
-                {imageError && (
-                  <div className="text-center text-destructive py-8">
-                    Erreur de chargement de l'image
+                </div>
+              )}
+              
+              {imageError && (
+                <div className="aspect-[3/4] flex items-center justify-center bg-muted/20 rounded-lg">
+                  <div className="text-center space-y-2">
+                    <p className="text-destructive">Erreur de chargement</p>
+                    <Button 
+                      variant="outline" 
+                      size="sm" 
+                      onClick={() => window.location.reload()}
+                    >
+                      <RotateCcw className="h-4 w-4 mr-2" />
+                      Réessayer
+                    </Button>
                   </div>
-                )}
+                </div>
+              )}
 
-                <img
-                  ref={imageRef}
-                  src={currentPageData?.image}
-                  alt={`Planche ${currentPage}`}
-                  className={cn(
-                    "w-full h-auto mx-auto transition-opacity duration-300",
-                    imageLoaded ? "opacity-100" : "opacity-0"
-                  )}
-                  onLoad={handleImageLoad}
-                  onError={handleImageError}
-                />
-              </div>
+              <img
+                ref={imageRef}
+                src={currentPageData?.image}
+                alt={currentPageData?.alt || `Planche ${currentPage}`}
+                className={cn(
+                  "w-full h-auto rounded-lg shadow-2xl transition-opacity duration-300",
+                  imageLoaded ? "opacity-100" : "opacity-0"
+                )}
+                onLoad={handleImageLoad}
+                onError={handleImageError}
+                loading="eager"
+              />
             </div>
           </div>
 
@@ -456,117 +466,120 @@ const Reader = () => {
                 ? "translate-y-0 opacity-100" 
                 : "translate-y-full opacity-0"
               : "translate-y-0 opacity-100",
-            cinemaModeEnabled ? "bg-black/80 backdrop-blur-sm" : "bg-background/95 backdrop-blur-sm border-t"
+            cinemaModeEnabled ? "navigation-overlay" : "bg-background/80 backdrop-blur-sm border-t border-border/50"
           )}>
-            <div className="max-w-7xl mx-auto px-4 py-3">
-              <div className="flex items-center justify-between">
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  onClick={previousPage}
-                  disabled={isFirstPage}
-                  className={cinemaModeEnabled ? "text-white hover:bg-white/20 disabled:text-white/30" : ""}
-                >
-                  <ChevronLeft className="h-4 w-4 mr-2" />
-                  Précédent
-                </Button>
-
-                <div className="flex items-center gap-2">
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    onClick={resetProgress}
-                    className={cinemaModeEnabled ? "text-white hover:bg-white/20" : ""}
-                  >
-                    <RotateCcw className="h-4 w-4" />
-                  </Button>
-                </div>
-
-                {/* Bouton Suivant OU Terminer */}
-                {isLastPage && imageLoaded ? (
-                  <Button
-                    size="lg"
-                    onClick={() => {
-                      markReadingComplete();
-                      setShowCompletion(true);
-                    }}
-                    className={cn(
-                      "ml-4",
-                      cinemaModeEnabled
-                        ? "bg-white text-black hover:bg-white/90"
-                        : "bg-primary text-primary-foreground hover:bg-primary/90"
-                    )}
-                  >
-                    Terminer la lecture
-                  </Button>
-                ) : (
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    onClick={nextPage}
-                    disabled={isLastPage}
-                    className={cinemaModeEnabled ? "text-white hover:bg-white/20 disabled:text-white/30" : ""}
-                  >
-                    Suivant
-                    <ChevronRight className="h-4 w-4 ml-2" />
-                  </Button>
+            <div className="flex items-center justify-center p-4 gap-4">
+              <Button
+                variant="ghost"
+                size="lg"
+                onClick={previousPage}
+                disabled={isFirstPage}
+                className={cn(
+                  cinemaModeEnabled ? "text-white hover:bg-white/20 disabled:opacity-50 disabled:cursor-not-allowed" : "hover:bg-accent disabled:opacity-50 disabled:cursor-not-allowed"
                 )}
-              </div>
+              >
+                <ChevronLeft className="h-6 w-6 mr-2" />
+                Précédent
+              </Button>
+
+              <Button
+                variant="ghost"
+                size="lg"
+                onClick={nextPage}
+                disabled={isLastPage}
+                className={cn(
+                  cinemaModeEnabled 
+                    ? "text-white hover:bg-white/20 disabled:opacity-50 disabled:cursor-not-allowed" 
+                    : "hover:bg-accent disabled:opacity-50 disabled:cursor-not-allowed"
+                )}
+              >
+                Suivant
+                <ChevronRight className="h-6 w-6 ml-2" />
+              </Button>
+
+              {isLastPage && imageLoaded && (
+                <Button
+                  size="lg"
+                  onClick={() => {
+                    markReadingComplete();
+                    setShowCompletion(true);
+                  }}
+                  className={cn(
+                    "ml-4",
+                    cinemaModeEnabled
+                      ? "bg-white text-black hover:bg-white/90"
+                      : "bg-primary text-primary-foreground hover:bg-primary/90"
+                  )}
+                >
+                  Terminer la lecture
+                  <span className="text-xs text-muted-foreground ml-2">
+                    Accéder au bilan de lecture
+                  </span>
+                </Button>
+              )}
             </div>
           </div>
-
-          {/* Messages narratifs */}
-          {showNarrativeMessage && pendingNarrativeMessage && (
-            <NarrativeMessageComponent
-              message={pendingNarrativeMessage}
-              onClose={() => {
-                setShowNarrativeMessage(false);
-                markNarrativeMessageAsSeen(currentPage);
-                setPendingNarrativeMessage(null);
-              }}
-            />
-          )}
-
-          {/* Résumé des chapitres */}
-          {showChapterSummary && comicData && (
-            <ChapterSummary
-              chapters={comicData.chapters}
-              currentChapter={currentChapter}
-              completedChapters={getCompletedChapters()}
-              onChapterSelect={goToChapter}
-              onClose={() => setShowChapterSummary(false)}
-              isOpen={showChapterSummary}
-            />
-          )}
-
-          {/* Écran de complétion */}
-          {showCompletion && (
-            <div className="fixed inset-0 z-[100] bg-background">
-              <ReadingCompletion
-                statistics={getStatistics()}
-                onRestart={() => {
-                  resetProgress();
-                  setShowCompletion(false);
-                  goToPage(1);
-                }}
-                onNextEpisode={handleNextEpisode}
-                onDownloadPDF={handleDownloadPDF}
-                onShare={handleShare}
-                onRedFlags={redFlagsData ? () => {
-                  setShowCompletion(false);
-                  setShowRedFlags(true);
-                  markRedFlagsAccessed();
-                } : undefined}
-                hasRedFlags={!!redFlagsData}
-                hasNextEpisode={false}
-                hasAccessedRedFlagsBefore={hasAccessedBefore}
-              />
-            </div>
-          )}
         </div>
       )}
-    </>
+
+      {/* Messages narratifs */}
+      {showNarrativeMessage && pendingNarrativeMessage && (
+        <NarrativeMessageComponent
+          message={pendingNarrativeMessage}
+          onContinue={() => {
+            markNarrativeMessageAsSeen(currentPage);
+            setShowNarrativeMessage(false);
+            setPendingNarrativeMessage(null);
+          }}
+          onSkip={() => {
+            markNarrativeMessageAsSeen(currentPage);
+            setShowNarrativeMessage(false);
+            setPendingNarrativeMessage(null);
+          }}
+        />
+      )}
+
+      {/* Sommaire */}
+      {showChapterSummary && (
+        <ChapterSummary
+          chapters={comicData.chapters}
+          episodes={comicData.episodes}
+          currentChapter={currentChapter}
+          completedChapters={getCompletedChapters()}
+          onChapterSelect={goToChapter}
+          onClose={() => setShowChapterSummary(false)}
+          isOpen={showChapterSummary}
+        />
+      )}
+
+           {/* Écran de completion */}
+      {showCompletion && (
+        <ReadingCompletion
+          onRestart={() => {
+            resetProgress();
+            setShowCompletion(false);
+            goToPage(1);
+          }}
+          onNextEpisode={handleNextEpisode}
+          onDownloadPDF={handleDownloadPDF}
+          onShare={handleShare}
+          onRedFlags={
+            redFlagsData?.length
+              ? () => {
+                  markRedFlagsAccessed();
+                  setShowCompletion(false);
+                  setShowRedFlags(true);
+                }
+              : undefined
+          }
+          hasNextEpisode={hasNextEpisode}
+          statistics={getStatistics()}
+          redFlagsCount={redFlagsData?.length ?? 0}
+          hasAccessedRedFlags={hasAccessedBefore}
+        />
+      )}
+    </TooltipProvider>
   );
-};
+}
 
 export default Reader;

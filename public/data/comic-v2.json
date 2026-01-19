@@ -2,70 +2,185 @@
   "title": "Mafia School",
   "author": "Auteur",
   "description": "Une œuvre d'enquête et de critique sociale qui explore les mécanismes du pouvoir et de la corruption dans nos institutions.",
-  "version": "2.0",
+  "version": "2.1",
   "episodes": [
     {
       "id": 1,
-      "title": "L'Enquête Commence",
-      "description": "Les premiers indices d'un système corrompu",
+      "title": "Les signaux faibles",
+      "description": "Quand les premiers dysfonctionnements apparaissent, mais que personne n’ose encore parler.",
       "available": true
     },
     {
       "id": 2,
       "title": "Révélations",
-      "description": "Les secrets cachés remontent à la surface",
+      "description": "Les masques tombent et le système se fissure.",
       "available": false
     }
   ],
+
   "chapters": [
     {
       "id": 1,
-      "title": "Prologue",
       "episodeId": 1,
+      "title": "Ouverture",
       "startPage": 1,
       "endPage": 1,
-      "description": "L'histoire commence..."
+      "description": "Entrée dans l’univers de Mafia School."
     },
     {
       "id": 2,
-      "title": "Première Découverte",
       "episodeId": 1,
+      "title": "Prologue",
       "startPage": 2,
       "endPage": 2,
-      "description": "Les indices s'accumulent"
+      "description": "Le décor est planté."
+    },
+    {
+      "id": 3,
+      "episodeId": 1,
+      "title": "Le salon étudiant",
+      "startPage": 3,
+      "endPage": 6,
+      "description": "Promesses, discours et premières illusions."
+    },
+    {
+      "id": 4,
+      "episodeId": 1,
+      "title": "Soirée d’intégration",
+      "startPage": 7,
+      "endPage": 9,
+      "description": "L’image festive masque déjà certaines réalités."
+    },
+    {
+      "id": 5,
+      "episodeId": 1,
+      "title": "La rentrée",
+      "startPage": 10,
+      "endPage": 12,
+      "description": "Le quotidien commence."
+    },
+    {
+      "id": 6,
+      "episodeId": 1,
+      "title": "Accueil formateur",
+      "startPage": 13,
+      "endPage": 14,
+      "description": "Premiers signaux internes."
+    },
+    {
+      "id": 7,
+      "episodeId": 1,
+      "title": "Les premiers cours",
+      "startPage": 15,
+      "endPage": 16,
+      "description": "Improvisation et désorganisation."
+    },
+    {
+      "id": 8,
+      "episodeId": 1,
+      "title": "Entre formateurs",
+      "startPage": 17,
+      "endPage": 19,
+      "description": "Les discussions en coulisses."
+    },
+    {
+      "id": 9,
+      "episodeId": 1,
+      "title": "L’animation de Gilbert",
+      "startPage": 20,
+      "endPage": 20,
+      "description": "Un personnage clé se dévoile."
+    },
+    {
+      "id": 10,
+      "episodeId": 1,
+      "title": "Les premiers incidents",
+      "startPage": 21,
+      "endPage": 22,
+      "description": "Les alertes deviennent concrètes."
+    },
+    {
+      "id": 11,
+      "episodeId": 1,
+      "title": "Management toxique",
+      "startPage": 23,
+      "endPage": 24,
+      "description": "Comprendre les mécanismes à l’œuvre."
+    },
+    {
+      "id": 12,
+      "episodeId": 1,
+      "title": "La passion de Gilbert",
+      "startPage": 25,
+      "endPage": 26,
+      "description": "Détails révélateurs et décalage."
+    },
+    {
+      "id": 13,
+      "episodeId": 1,
+      "title": "Pas de paiement, pas de cours",
+      "startPage": 27,
+      "endPage": 29,
+      "description": "La rupture."
     }
   ],
+
   "pages": [
     {
       "id": 1,
       "chapterId": 1,
       "image": "/data/images/1.webp",
-      "alt": "Planche 1 - Mafia School",
-      "narrativeMessage": {
-        "enabled": true,
-        "position": "after",
-        "title": "Le Début de l'Enquête",
-        "content": "Dans cette première planche, nous découvrons l'univers sombre et complexe de Mafia School. Chaque détail compte dans cette enquête qui ne fait que commencer.",
-        "type": "context"
-      }
+      "alt": "Couverture - Mafia School"
     },
     {
       "id": 2,
       "chapterId": 2,
       "image": "/data/images/2.webp",
-      "alt": "Planche 2 - Mafia School",
-      "narrativeMessage": {
-        "enabled": true,
-        "position": "after",
-        "title": "Les Indices s'Accumulent",
-        "content": "Les premiers éléments de l'enquête se mettent en place. Observez attentivement les détails qui pourraient révéler la vérité cachée.",
-        "type": "investigation"
-      }
-    }
+      "alt": "Prologue"
+    },
+
+    { "id": 3, "chapterId": 3, "image": "/data/images/3.webp", "alt": "Salon étudiant" },
+    { "id": 4, "chapterId": 3, "image": "/data/images/4.webp", "alt": "Salon étudiant" },
+    { "id": 5, "chapterId": 3, "image": "/data/images/5.webp", "alt": "Salon étudiant" },
+    { "id": 6, "chapterId": 3, "image": "/data/images/6.webp", "alt": "Salon étudiant" },
+
+    { "id": 7, "chapterId": 4, "image": "/data/images/7.webp", "alt": "Soirée intégration" },
+    { "id": 8, "chapterId": 4, "image": "/data/images/8.webp", "alt": "Soirée intégration" },
+    { "id": 9, "chapterId": 4, "image": "/data/images/9.webp", "alt": "Soirée intégration" },
+
+    { "id": 10, "chapterId": 5, "image": "/data/images/10.webp", "alt": "Rentrée étudiante" },
+    { "id": 11, "chapterId": 5, "image": "/data/images/11.webp", "alt": "Rentrée étudiante" },
+    { "id": 12, "chapterId": 5, "image": "/data/images/12.webp", "alt": "Rentrée étudiante" },
+
+    { "id": 13, "chapterId": 6, "image": "/data/images/13.webp", "alt": "Accueil formateur" },
+    { "id": 14, "chapterId": 6, "image": "/data/images/14.webp", "alt": "Accueil formateur" },
+
+    { "id": 15, "chapterId": 7, "image": "/data/images/15.webp", "alt": "Premiers cours" },
+    { "id": 16, "chapterId": 7, "image": "/data/images/16.webp", "alt": "Premiers cours" },
+
+    { "id": 17, "chapterId": 8, "image": "/data/images/17.webp", "alt": "Entre formateurs" },
+    { "id": 18, "chapterId": 8, "image": "/data/images/18.webp", "alt": "Entre formateurs" },
+    { "id": 19, "chapterId": 8, "image": "/data/images/19.webp", "alt": "Entre formateurs" },
+
+    { "id": 20, "chapterId": 9, "image": "/data/images/20.webp", "alt": "Animation de Gilbert" },
+
+    { "id": 21, "chapterId": 10, "image": "/data/images/21.webp", "alt": "Premiers incidents" },
+    { "id": 22, "chapterId": 10, "image": "/data/images/22.webp", "alt": "Premiers incidents" },
+
+    { "id": 23, "chapterId": 11, "image": "/data/images/23.webp", "alt": "Management toxique" },
+    { "id": 24, "chapterId": 11, "image": "/data/images/24.webp", "alt": "Management toxique" },
+
+    { "id": 25, "chapterId": 12, "image": "/data/images/25.webp", "alt": "Décoration Halloween" },
+    { "id": 26, "chapterId": 12, "image": "/data/images/26.webp", "alt": "La passion de Gilbert" },
+
+    { "id": 27, "chapterId": 13, "image": "/data/images/27.webp", "alt": "Rupture" },
+    { "id": 28, "chapterId": 13, "image": "/data/images/28.webp", "alt": "Rupture" },
+    { "id": 29, "chapterId": 13, "image": "/data/images/29.webp", "alt": "Rupture" }
   ],
+
   "settings": {
     "guidedReading": {
-      "enabled": true,
+      "enabled": false,
       "defaultActive": false
     },
     "cinemaMode": {

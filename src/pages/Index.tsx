@@ -12,8 +12,8 @@ import {
   BookOpen,
   Play,
   Zap,
-  Eye,
   BarChart3,
+  Flag,
 } from "lucide-react";
 
 const Index = () => {
@@ -79,12 +79,11 @@ const Index = () => {
               <h1 className="text-5xl md:text-6xl font-light tracking-tight text-white drop-shadow-md">
                 {comicData?.title || "Mafia School"}
               </h1>
-              
             </div>
 
             <p className="text-lg md:text-xl text-white/80 font-light leading-relaxed max-w-xl mx-auto">
               {comicData?.description ||
-                "Une œuvre de fiction explorant les mécanismes du pouvoir, les dérives institutionnelles et les signaux faibles à ne pas ignorer."}
+                "Une œuvre de fiction immersive explorant les mécanismes du pouvoir, les dérives institutionnelles et les signaux faibles à ne pas ignorer."}
             </p>
 
             {comicData?.author && (
@@ -93,24 +92,23 @@ const Index = () => {
               </p>
             )}
 
-            {/* Features */}
+            {/* Features V1 */}
             <div className="flex flex-wrap justify-center gap-2 mt-4">
               <Badge variant="outline" className="text-xs text-white border-white/30">
                 <Zap className="mr-1 h-3 w-3" />
                 Mode cinéma
               </Badge>
-              <Badge variant="outline" className="text-xs text-white border-white/30">
-                <Eye className="mr-1 h-3 w-3" />
-                Lecture guidée
-              </Badge>
+
               <Badge variant="outline" className="text-xs text-white border-white/30">
                 <BarChart3 className="mr-1 h-3 w-3" />
-                Statistiques
+                Suivi de lecture
               </Badge>
+
               <Badge
                 variant="outline"
                 className="text-xs border-amber-300 text-amber-400"
               >
+                <Flag className="mr-1 h-3 w-3" />
                 Red Flags
               </Badge>
             </div>
