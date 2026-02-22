@@ -12,9 +12,9 @@
     },
     {
       "id": 2,
-      "title": "Révélations",
+      "title": "Sérial Voyou",
       "description": "Les masques tombent et le système se fissure.",
-      "available": false
+      "available": true
     }
   ],
 
@@ -122,6 +122,63 @@
       "startPage": 27,
       "endPage": 29,
       "description": "La rupture."
+      },
+{
+  "id": 14,
+  "episodeId": 2,
+  "title": "Couverture épisode 2",
+  "startPage": 30,
+  "endPage": 30,
+  "description": "Ouverture du nouvel épisode."
+},
+{
+  "id": 15,
+  "episodeId": 2,
+  "title": "Ben je sais pas ?",
+  "startPage": 31,
+  "endPage": 34,
+  "description": "Premières hésitations et flottements."
+},
+{
+  "id": 16,
+  "episodeId": 2,
+  "title": "Nouvelle pédagogie",
+  "startPage": 35,
+  "endPage": 38,
+  "description": "Des méthodes innovantes… ou improvisées ?"
+},
+{
+  "id": 17,
+  "episodeId": 2,
+  "title": "Quotidien étudiants",
+  "startPage": 39,
+  "endPage": 42,
+  "description": "La réalité vue du terrain."
+},
+{
+  "id": 18,
+  "episodeId": 2,
+  "title": "Séminaire de cohésion",
+  "startPage": 43,
+  "endPage": 46,
+  "description": "Créer du lien… ou sauver les apparences ?"
+},
+{
+  "id": 19,
+  "episodeId": 2,
+  "title": "Réchauffement climatique à Virtual College",
+  "startPage": 47,
+  "endPage": 51,
+  "description": "Nouvelle thématique, nouveaux discours."
+},
+{
+  "id": 20,
+  "episodeId": 2,
+  "title": "Tout est possible",
+  "startPage": 52,
+  "endPage": 57,
+  "description": "Clôture ouverte et promesses infinies."
+
     }
   ],
 
@@ -175,7 +232,41 @@
 
     { "id": 27, "chapterId": 13, "image": "/data/images/27.webp", "alt": "Rupture" },
     { "id": 28, "chapterId": 13, "image": "/data/images/28.webp", "alt": "Rupture" },
-    { "id": 29, "chapterId": 13, "image": "/data/images/29.webp", "alt": "Rupture" }
+    { "id": 29, "chapterId": 13, "image": "/data/images/29.webp", "alt": "Rupture" },
+    { "id": 30, "chapterId": 14, "image": "/data/images/30.webp", "alt": "Couverture épisode 2" },
+
+{ "id": 31, "chapterId": 15, "image": "/data/images/31.webp", "alt": "Ben je sais pas ?" },
+{ "id": 32, "chapterId": 15, "image": "/data/images/32.webp", "alt": "Ben je sais pas ?" },
+{ "id": 33, "chapterId": 15, "image": "/data/images/33.webp", "alt": "Ben je sais pas ?" },
+{ "id": 34, "chapterId": 15, "image": "/data/images/34.webp", "alt": "Ben je sais pas ?" },
+
+{ "id": 35, "chapterId": 16, "image": "/data/images/35.webp", "alt": "Nouvelle pédagogie" },
+{ "id": 36, "chapterId": 16, "image": "/data/images/36.webp", "alt": "Nouvelle pédagogie" },
+{ "id": 37, "chapterId": 16, "image": "/data/images/37.webp", "alt": "Nouvelle pédagogie" },
+{ "id": 38, "chapterId": 16, "image": "/data/images/38.webp", "alt": "Nouvelle pédagogie" },
+
+{ "id": 39, "chapterId": 17, "image": "/data/images/39.webp", "alt": "Quotidien étudiants" },
+{ "id": 40, "chapterId": 17, "image": "/data/images/40.webp", "alt": "Quotidien étudiants" },
+{ "id": 41, "chapterId": 17, "image": "/data/images/41.webp", "alt": "Quotidien étudiants" },
+{ "id": 42, "chapterId": 17, "image": "/data/images/42.webp", "alt": "Quotidien étudiants" },
+
+{ "id": 43, "chapterId": 18, "image": "/data/images/43.webp", "alt": "Séminaire de cohésion" },
+{ "id": 44, "chapterId": 18, "image": "/data/images/44.webp", "alt": "Séminaire de cohésion" },
+{ "id": 45, "chapterId": 18, "image": "/data/images/45.webp", "alt": "Séminaire de cohésion" },
+{ "id": 46, "chapterId": 18, "image": "/data/images/46.webp", "alt": "Séminaire de cohésion" },
+
+{ "id": 47, "chapterId": 19, "image": "/data/images/47.webp", "alt": "Réchauffement climatique" },
+{ "id": 48, "chapterId": 19, "image": "/data/images/48.webp", "alt": "Réchauffement climatique" },
+{ "id": 49, "chapterId": 19, "image": "/data/images/49.webp", "alt": "Réchauffement climatique" },
+{ "id": 50, "chapterId": 19, "image": "/data/images/50.webp", "alt": "Réchauffement climatique" },
+{ "id": 51, "chapterId": 19, "image": "/data/images/51.webp", "alt": "Réchauffement climatique" },
+
+{ "id": 52, "chapterId": 20, "image": "/data/images/52.webp", "alt": "Tout est possible" },
+{ "id": 53, "chapterId": 20, "image": "/data/images/53.webp", "alt": "Tout est possible" },
+{ "id": 54, "chapterId": 20, "image": "/data/images/54.webp", "alt": "Tout est possible" },
+{ "id": 55, "chapterId": 20, "image": "/data/images/55.webp", "alt": "Tout est possible" },
+{ "id": 56, "chapterId": 20, "image": "/data/images/56.webp", "alt": "Tout est possible" },
+{ "id": 57, "chapterId": 20, "image": "/data/images/57.webp", "alt": "Tout est possible" }
   ],
 
   "settings": {
