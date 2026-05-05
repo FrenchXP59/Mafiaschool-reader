@@ -209,7 +209,17 @@ const Reader = () => {
   };
 
   const handleNextEpisode = () => {
-    console.log('Épisode suivant demandé');
+    if (!comicData || !currentChapterData) return;
+    const nextEpisodeId = currentChapterData.episodeId + 1;
+    const nextEpisode = comicData.episodes.find(ep => ep.id === nextEpisodeId);
+    
+    if (nextEpisode && nextEpisode.available) {
+      const firstChapterOfNextEpisode = comicData.chapters.find(c => c.episodeId === nextEpisodeId);
+      if (firstChapterOfNextEpisode) {
+        goToPage(firstChapterOfNextEpisode.startPage);
+        setShowCompletion(false);
+      }
+    }
   };
 
   if (isLoading) {

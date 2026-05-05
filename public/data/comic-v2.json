@@ -15,6 +15,12 @@
       "title": "Sérial Voyou",
       "description": "Les masques tombent et le système se fissure.",
       "available": true
+    },
+    {
+      "id": 3,
+      "title": "Le choc des titans",
+      "description": "Deux visions. Zéro morale. La confrontation finale entre deux mondes que tout oppose.",
+      "available": true
     }
   ],
 
@@ -179,6 +185,78 @@
   "endPage": 57,
   "description": "Clôture ouverte et promesses infinies."
 
+    },
+    {
+      "id": 21,
+      "episodeId": 3,
+      "title": "Couverture",
+      "startPage": 58,
+      "endPage": 58,
+      "description": "L'affiche de l'épisode 3."
+    },
+    {
+      "id": 22,
+      "episodeId": 3,
+      "title": "Disclaimer",
+      "startPage": 59,
+      "endPage": 59,
+      "description": "Avertissement important."
+    },
+    {
+      "id": 23,
+      "episodeId": 3,
+      "title": "Les nouveaux visages",
+      "startPage": 60,
+      "endPage": 62,
+      "description": "Profils des acteurs majeurs."
+    },
+    {
+      "id": 24,
+      "episodeId": 3,
+      "title": "L'incertitude",
+      "startPage": 63,
+      "endPage": 63,
+      "description": "Tout est fini ? Peut-être pas..."
+    },
+    {
+      "id": 25,
+      "episodeId": 3,
+      "title": "Rentrée 2025",
+      "startPage": 64,
+      "endPage": 64,
+      "description": "Nouveau départ, nouvelles ambitions."
+    },
+    {
+      "id": 26,
+      "episodeId": 3,
+      "title": "La chute",
+      "startPage": 65,
+      "endPage": 69,
+      "description": "La fermeture du campus."
+    },
+    {
+      "id": 27,
+      "episodeId": 3,
+      "title": "Le Gourou",
+      "startPage": 70,
+      "endPage": 74,
+      "description": "Sortir de sa zone de confort."
+    },
+    {
+      "id": 28,
+      "episodeId": 3,
+      "title": "Le business des diplômes",
+      "startPage": 75,
+      "endPage": 78,
+      "description": "L'envers du décor."
+    },
+    {
+      "id": 29,
+      "episodeId": 3,
+      "title": "Ministères",
+      "startPage": 79,
+      "endPage": 83,
+      "description": "Et pendant ce temps..."
     }
   ],
 
@@ -266,7 +344,33 @@
 { "id": 54, "chapterId": 20, "image": "/data/images/54.webp", "alt": "Tout est possible" },
 { "id": 55, "chapterId": 20, "image": "/data/images/55.webp", "alt": "Tout est possible" },
 { "id": 56, "chapterId": 20, "image": "/data/images/56.webp", "alt": "Tout est possible" },
-{ "id": 57, "chapterId": 20, "image": "/data/images/57.webp", "alt": "Tout est possible" }
+{ "id": 57, "chapterId": 20, "image": "/data/images/57.webp", "alt": "Tout est possible" },
+    { "id": 58, "chapterId": 21, "image": "/data/images/58.webp", "alt": "Couverture Episode 3" },
+    { "id": 59, "chapterId": 22, "image": "/data/images/59.webp", "alt": "Disclaimer" },
+    { "id": 60, "chapterId": 23, "image": "/data/images/60.jpg", "alt": "Profil Valeria Santini" },
+    { "id": 61, "chapterId": 23, "image": "/data/images/61.jpg", "alt": "Profil Gilbert" },
+    { "id": 62, "chapterId": 23, "image": "/data/images/62.webp", "alt": "Profil Nana" },
+    { "id": 63, "chapterId": 24, "image": "/data/images/63.webp", "alt": "Tout est fini ?" },
+    { "id": 64, "chapterId": 25, "image": "/data/images/64.webp", "alt": "Rentrée 2025" },
+    { "id": 65, "chapterId": 26, "image": "/data/images/65.webp", "alt": "Fermeture" },
+    { "id": 66, "chapterId": 26, "image": "/data/images/66.webp", "alt": "Chute" },
+    { "id": 67, "chapterId": 26, "image": "/data/images/67.webp", "alt": "Chute" },
+    { "id": 68, "chapterId": 26, "image": "/data/images/68.webp", "alt": "Chute" },
+    { "id": 69, "chapterId": 26, "image": "/data/images/69.webp", "alt": "Chute" },
+    { "id": 70, "chapterId": 27, "image": "/data/images/70.webp", "alt": "Le Gourou" },
+    { "id": 71, "chapterId": 27, "image": "/data/images/71.webp", "alt": "Le Gourou" },
+    { "id": 72, "chapterId": 27, "image": "/data/images/72.webp", "alt": "Le Gourou" },
+    { "id": 73, "chapterId": 27, "image": "/data/images/73.webp", "alt": "Le Gourou" },
+    { "id": 74, "chapterId": 27, "image": "/data/images/74.webp", "alt": "Le Gourou" },
+    { "id": 75, "chapterId": 28, "image": "/data/images/75-2.webp", "alt": "Le business des diplômes" },
+    { "id": 76, "chapterId": 28, "image": "/data/images/76-2.webp", "alt": "Le business des diplômes" },
+    { "id": 77, "chapterId": 28, "image": "/data/images/77-2.webp", "alt": "Le business des diplômes" },
+    { "id": 78, "chapterId": 28, "image": "/data/images/78-2.webp", "alt": "Le business des diplômes" },
+    { "id": 79, "chapterId": 29, "image": "/data/images/79-2.webp", "alt": "Ministères" },
+    { "id": 80, "chapterId": 29, "image": "/data/images/80-2.webp", "alt": "Ministères" },
+    { "id": 81, "chapterId": 29, "image": "/data/images/81-2.webp", "alt": "Ministères" },
+    { "id": 82, "chapterId": 29, "image": "/data/images/82-2.webp", "alt": "Ministères" },
+    { "id": 83, "chapterId": 29, "image": "/data/images/83.webp", "alt": "Ministères" }
   ],
 
   "settings": {

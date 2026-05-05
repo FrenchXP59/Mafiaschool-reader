@@ -85,6 +85,8 @@ export function ChapterSummary({
                           "border-blue-500/40 bg-blue-500/5 hover:bg-blue-500/10",
                         episode.id === 2 &&
                           "border-purple-500/40 bg-purple-500/5 hover:bg-purple-500/10",
+                        episode.id === 3 &&
+                          "border-amber-500/40 bg-amber-500/5 hover:bg-amber-500/10",
                         !episode.available && "opacity-50 cursor-not-allowed"
                       )}
                       onClick={() => {
@@ -105,7 +107,9 @@ export function ChapterSummary({
                               episode.id === 1 &&
                                 "border-blue-500 text-blue-600",
                               episode.id === 2 &&
-                                "border-purple-500 text-purple-600"
+                                "border-purple-500 text-purple-600",
+                              episode.id === 3 &&
+                                "border-amber-500 text-amber-600"
                             )}
                           >
                             Épisode {episode.id}
