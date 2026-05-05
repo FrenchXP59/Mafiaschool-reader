@@ -26,7 +26,6 @@ export function ChapterSummary({
   onClose,
   isOpen
 }: ChapterSummaryProps) {
-  const [selectedEpisode, setSelectedEpisode] = useState<number | null>(null);
 
   const getChaptersByEpisode = (episodeId: number) =>
     chapters.filter(chapter => chapter.episodeId === episodeId);
@@ -71,7 +70,6 @@ export function ChapterSummary({
               {episodes.map(episode => {
                 const episodeChapters = getChaptersByEpisode(episode.id);
                 const isExpanded =
-                  selectedEpisode === episode.id ||
                   episodeChapters.some(c => c.id === currentChapter);
 
                 return (
@@ -91,7 +89,11 @@ export function ChapterSummary({
                       )}
                       onClick={() => {
                         if (episode.available) {
-                          setSelectedEpisode(isExpanded ? null : episode.id);
+                          const firstChapter = episodeChapters[0];
+                          if (firstChapter) {
+                            onChapterSelect(firstChapter.id);
+                            onClose();
+                          }
                         }
                       }}
                     >
